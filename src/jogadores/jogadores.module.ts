@@ -14,6 +14,9 @@ import { JogadoresService } from './jogadores.service';
   ],
   providers: [
     JogadoresService
+  ],
+  exports: [
+    JogadoresService
   ]
 })
 export class JogadoresModule {}

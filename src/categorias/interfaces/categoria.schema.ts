@@ -1,4 +1,3 @@
-import { Mongoose } from "mongoose";
 
 import * as mongoose from 'mongoose';
 
