@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-import { Partida } from './../../partidas/interfaces/partida.interface';
+import { Partida } from './partida.interface';
 import { Jogador } from './../../jogadores/interfaces/jogador.interface';
 
 export interface Desafio extends Document {

@@ -7,4 +7,5 @@ export interface Jogador extends Document {
     ranking: string;
     posicaoRanking: number;
     urlFotoJogador: string;
+    
 }
