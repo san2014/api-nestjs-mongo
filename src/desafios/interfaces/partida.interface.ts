@@ -3,8 +3,8 @@ import { Jogador } from '../../jogadores/interfaces/jogador.interface';
 
 export interface Partida extends Document {
     categoria: string;
-    def: Jogador;
     resultado: Resultado[];
+    def: Jogador;
     jogadores: Jogador[]; 
 }
 

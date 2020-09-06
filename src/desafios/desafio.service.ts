@@ -22,6 +22,7 @@ import { Partida } from './interfaces/partida.interface';
 @Injectable()
 export class DesafioService {
 
+
   private readonly logger = new Logger(DesafioService.name);
 
   constructor(
@@ -82,6 +83,12 @@ export class DesafioService {
     return await desafioCriado.save();
   }
 
+  async obterDesafio(_id: string): Promise<Desafio> {
+    const desafioEncontrado = await this.desafioModel.findById(_id).exec();
+    this.logger.log(JSON.stringify(desafioEncontrado));
+    return desafioEncontrado;
+  }  
+
   async consultarDesafios(): Promise<Desafio[]> {
     return await this.desafioModel
       .find()
@@ -128,6 +135,8 @@ export class DesafioService {
     desafioEncontrado.status = atualizarDesafiodto.status;
     desafioEncontrado.dataHoraDesafio = atualizarDesafiodto.dataHoraDesafio;
 
+    this.logger.log(JSON.stringify(desafioEncontrado));
+
     await this.desafioModel
       .findOneAndUpdate({ _id }, { $set: desafioEncontrado })
       .exec();
@@ -141,7 +150,7 @@ export class DesafioService {
       throw new NotFoundException(`Desafio ${_id} não cadastrado!`);
     }
 
-    const jogadorFilter = desafioEncontrado.jogadores.filter( jogador => jogador._id == atribuirDesafioPartidaDto);
+    const jogadorFilter = desafioEncontrado.jogadores.filter( jogador => jogador._id == atribuirDesafioPartidaDto.def);
 
     this.logger.log(`desafioEncontrado: ${desafioEncontrado}`);
     this.logger.log(`jogadorFilter: ${jogadorFilter}`);
@@ -154,6 +163,8 @@ export class DesafioService {
 
     partidaCriada.categoria = desafioEncontrado.categoria;
     partidaCriada.jogadores = desafioEncontrado.jogadores;
+
+    this.logger.log(JSON.stringify(partidaCriada));
 
     const resultado = await partidaCriada.save();
 

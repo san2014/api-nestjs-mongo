@@ -9,11 +9,12 @@ export class DesafioStatusValidacaoPipe implements PipeTransform {
         DesafioStatus.CANCELADO
     ];
 
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     transform(value: any) {
         const status = value.status.toUpperCase();
 
         if(!this.ehStatusValido(status)) {
-            throw new BadRequestException(`${status} é um status inválido`);
+            throw new BadRequestException(`${status} não é um status inválido`);
         }
 
         return value;
